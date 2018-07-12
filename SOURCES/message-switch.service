@@ -1,0 +1,20 @@
+[Unit]
+Description=Xapi toolstack store-and-forward message switch
+After=syslog.target local-fs.target
+Wants=syslog.target local-fs.target
+
+[Service]
+Type=simple
+Environment=OCAMLRUNPARAM=b
+EnvironmentFile=-/etc/sysconfig/message-switch
+RuntimeDirectory=message-switch
+ExecStart=/usr/sbin/message-switch --config /etc/message-switch.conf
+StandardOutput=syslog
+StandardError=syslog
+Restart=on-failure
+# restart but fail if more than 5 failures in 30s
+StartLimitBurst=5
+StartLimitInterval=30s
+
+[Install]
+WantedBy=multi-user.target
