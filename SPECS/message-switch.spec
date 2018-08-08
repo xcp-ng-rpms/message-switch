@@ -64,11 +64,17 @@ install -m 0644 stuff.xml %{buildroot}/etc/xensource/bugtool/message-switch/stuf
 
 %post
 %systemd_post message-switch.service
-# upgrade from SysV, see http://0pointer.de/public/systemd-man/daemon.html
-# except %triggerun doesn't work since previous package had no systemd,
-# and don't transition in 2 steps
-if /sbin/chkconfig --level 5 message-switch ; then
-  /bin/systemctl --no-reload enable message-switch.service >/dev/null 2>&1 || :
+if [ $1 -gt 1 ] ; then
+  # upgrade from SysV, see http://0pointer.de/public/systemd-man/daemon.html
+  # except %triggerun doesn't work since previous package had no systemd,
+  # and don't transition in 2 steps
+  if /sbin/chkconfig --level 5 message-switch ; then
+    /bin/systemctl --no-reload enable message-switch.service >/dev/null 2>&1 || :
+    /sbin/chkconfig --del message-switch >/dev/null 2>&1 || :
+  else
+    # remove broken symlinks that a previous version of the package may have forgotten to remove
+    find /etc/rc.d -name "*message-switch" -delete >/dev/null 2>&1 || :
+  fi
 fi
 
 %preun
