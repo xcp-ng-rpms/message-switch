@@ -1,6 +1,6 @@
 Name:           message-switch
 Version:        1.12.0
-Release:        5%{?dist}
+Release:        5.1.xcp%{?dist}
 Summary:        A store and forward message switch
 License:        FreeBSD
 URL:            https://github.com/xapi-project/message-switch
@@ -120,6 +120,10 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu Sep 13 2018 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.12.0-5.1.xcp
+- Do not leave broken symlinks behind when upgrading.
+- Cf. https://bugs.xenserver.org/browse/XSO-880
+
 * Thu May 24 2018 Christian Lindig <christian.lindig@citrix.com> - 1.12.0-1
 - CA-289145: close socket if error occurs when using lwt connect
 - switch/switch_main: make safe-string compliant
