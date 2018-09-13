@@ -1,11 +1,11 @@
 Name:           message-switch
-Version:        1.11.0
-Release:        6%{?dist}
+Version:        1.12.0
+Release:        5%{?dist}
 Summary:        A store and forward message switch
 License:        FreeBSD
 URL:            https://github.com/xapi-project/message-switch
 Source0:        https://code.citrite.net/rest/archive/latest/projects/XSU/repos/%{name}/archive?at=v%{version}&format=tar.gz&prefix=%{name}-%{version}#/%{name}-%{version}.tar.gz
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.11.0&format=tar.gz&prefix=message-switch-1.11.0#/message-switch-1.11.0.tar.gz) = d48fe35ba652e87adcbccae3a0c607edbdd3ea24
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.12.0&format=tar.gz&prefix=message-switch-1.12.0#/message-switch-1.12.0.tar.gz) = 4ed7162896e4bd3c3957105d37a767c68ddc2897
 Source1:        message-switch.service
 Source2:        message-switch-conf
 Source3:        message-switch-bugtool1.xml
@@ -114,6 +114,12 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu May 24 2018 Christian Lindig <christian.lindig@citrix.com> - 1.12.0-1
+- CA-289145: close socket if error occurs when using lwt connect
+- switch/switch_main: make safe-string compliant
+- unix/protocol_unix{,scheduler}: make safe-string compliant
+- Fix coverage call
+
 * Wed Apr 04 2018 Marcello Seri <marcello.seri@citrix.com> - 1.11.0-6
 - Update SPEC file to get rid of rpmbuild warnings
 
