@@ -1,6 +1,6 @@
 Name:           message-switch
 Version:        1.12.0
-Release:        5.1.xcp%{?dist}
+Release:        5.2%{?dist}
 Summary:        A store and forward message switch
 License:        FreeBSD
 URL:            https://github.com/xapi-project/message-switch
