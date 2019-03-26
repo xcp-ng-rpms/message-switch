@@ -33,8 +33,6 @@ cp %{SOURCE3} message-switch.xml
 cp %{SOURCE4} stuff.xml
 
 %build
-# dirtily set some env variables. A proper solution would be to pass needed values to ./configure and/or make.
-eval $(opam config env --root=/usr/lib/opamroot)
 ./configure --destdir %{buildroot} --sbindir %{_sbindir}
 make
 
@@ -42,8 +40,6 @@ make
 mkdir -p %{buildroot}/%{_sbindir}
 mkdir -p %{buildroot}%{ocaml_libdir}
 mkdir -p %{buildroot}%{ocaml_docdir}
-# dirtily set some env variables again. A proper solution would be to pass needed values to make.
-eval $(opam config env --root=/usr/lib/opamroot)
 make install
 
 mkdir -p %{buildroot}/%{_sysconfdir}/init.d
