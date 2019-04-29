@@ -5,6 +5,8 @@ Wants=syslog.target local-fs.target
 
 [Service]
 Type=simple
+Environment="LD_PRELOAD=/usr/lib64/libjemalloc.so.1"
+Environment="MALLOC_CONF=narenas:1,tcache:false,lg_dirty_mult:22"
 Environment=OCAMLRUNPARAM=b
 EnvironmentFile=-/etc/sysconfig/message-switch
 RuntimeDirectory=message-switch

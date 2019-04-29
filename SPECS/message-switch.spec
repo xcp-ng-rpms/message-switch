@@ -1,16 +1,19 @@
 Name:           message-switch
-Version:        1.12.0
-Release:        5.2%{?dist}
+Version:        1.19.0
+Release:        2%{?dist}
 Summary:        A store and forward message switch
 License:        FreeBSD
 URL:            https://github.com/xapi-project/message-switch
-Source0:        https://code.citrite.net/rest/archive/latest/projects/XSU/repos/%{name}/archive?at=v%{version}&format=tar.gz&prefix=%{name}-%{version}#/%{name}-%{version}.tar.gz
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.12.0&format=tar.gz&prefix=message-switch-1.12.0#/message-switch-1.12.0.tar.gz) = 4ed7162896e4bd3c3957105d37a767c68ddc2897
-Source1:        message-switch.service
-Source2:        message-switch-conf
-Source3:        message-switch-bugtool1.xml
-Source4:        message-switch-bugtool2.xml
-BuildRequires:  ocaml-camlp4-devel
+
+Source0: https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.19.0&format=tar.gz&prefix=message-switch-1.19.0#/message-switch-1.19.0.tar.gz
+Source1: SOURCES/message-switch/message-switch.service
+Source2: SOURCES/message-switch/message-switch-conf
+Source3: SOURCES/message-switch/message-switch-bugtool1.xml
+Source4: SOURCES/message-switch/message-switch-bugtool2.xml
+
+
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.19.0&format=tar.gz&prefix=message-switch-1.19.0#/message-switch-1.19.0.tar.gz) = 29313bff58dc02ac4b2531160a4541fc197e6437
+
 BuildRequires:  xs-opam-repo
 BuildRequires:  openssl-devel
 BuildRequires:  systemd
@@ -22,7 +25,7 @@ BuildRequires:  systemd
 %description
 A store and forward message switch for OCaml.
 
-%global ocaml_dir /usr/lib/opamroot/system
+%global ocaml_dir /usr/lib/opamroot/ocaml-system
 %global ocaml_libdir %{ocaml_dir}/lib
 %global ocaml_docdir %{ocaml_dir}/doc
 
@@ -40,7 +43,7 @@ make
 mkdir -p %{buildroot}/%{_sbindir}
 mkdir -p %{buildroot}%{ocaml_libdir}
 mkdir -p %{buildroot}%{ocaml_docdir}
-make install
+make install DESTDIR=%{buildroot}
 
 mkdir -p %{buildroot}/%{_sysconfdir}/init.d
 %{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/message-switch.service
@@ -86,6 +89,7 @@ fi
 /bin/systemctl daemon-reload >/dev/null 2>&1 || :
 
 %package        devel
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.19.0&format=tar.gz&prefix=message-switch-1.19.0#/message-switch-1.19.0.tar.gz) = 29313bff58dc02ac4b2531160a4541fc197e6437
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       xs-opam-repo
@@ -116,9 +120,33 @@ developing applications that use %{name}.
 
 
 %changelog
-* Thu Sep 13 2018 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.12.0-5.1.xcp
-- Do not leave broken symlinks behind when upgrading.
-- Cf. https://bugs.xenserver.org/browse/XSO-880
+* Mon Feb 04 2019 Christian Lindig <christian.lindig@citrix.com> - 1.19.0-2
+- Remove stale /etc/rc.d/*/*message-switch symlinks
+
+* Wed Jan 23 2019 Christian Lindig <christian.lindig@citrix.com> - 1.19.0-1
+- Prepare for Dune 1.6
+- Use Ocaml 4.07 in Travis
+
+* Tue Nov 27 2018 Christian Lindig <christian.lindig@citrix.com> - 1.18.0-1
+- Port to dune.
+- Removed switch -p as it is causing more packags to be installed than expected.
+
+* Thu Nov 22 2018 Christian Lindig <christian.lindig@citrix.com> - 1.17.0-1
+- Add lwt_log to jbuild
+
+* Wed Oct 31 2018 Christian Lindig <christian.lindig@citrix.com> - 1.16.0-1
+- Update opam files for Opam 2
+
+* Mon Sep 24 2018 Christian Lindig <christian.lindig@citrix.com> - 1.15.0-1
+- message-switch-core.opam: we use rpclib not the old rpc
+- Update Travis to use our xs-opam remote
+
+* Tue Sep 18 2018 Christian Lindig <christian.lindig@citrix.com> - 1.14.0-1
+- Move to Dune, address compiler warnings
+- Replace Re.Str with Astring.String for thread safety
+
+* Fri Aug 31 2018 Christian Lindig <christian.lindig@citrix.com> - 1.13.0-1
+- Simplify PPX processing in jbuild files
 
 * Thu May 24 2018 Christian Lindig <christian.lindig@citrix.com> - 1.12.0-1
 - CA-289145: close socket if error occurs when using lwt connect
