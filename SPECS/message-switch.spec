@@ -1,18 +1,18 @@
 Name:           message-switch
-Version:        1.19.0
+Version:        1.22.0
 Release:        2%{?dist}
 Summary:        A store and forward message switch
 License:        FreeBSD
 URL:            https://github.com/xapi-project/message-switch
 
-Source0: https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.19.0&format=tar.gz&prefix=message-switch-1.19.0#/message-switch-1.19.0.tar.gz
+Source0: https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.22.0&format=tar.gz&prefix=message-switch-1.22.0#/message-switch-1.22.0.tar.gz
 Source1: SOURCES/message-switch/message-switch.service
 Source2: SOURCES/message-switch/message-switch-conf
 Source3: SOURCES/message-switch/message-switch-bugtool1.xml
 Source4: SOURCES/message-switch/message-switch-bugtool2.xml
 
 
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.19.0&format=tar.gz&prefix=message-switch-1.19.0#/message-switch-1.19.0.tar.gz) = 29313bff58dc02ac4b2531160a4541fc197e6437
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.22.0&format=tar.gz&prefix=message-switch-1.22.0#/message-switch-1.22.0.tar.gz) = b97d6c0f7e78b4e0b30171987d57d1398ac76ac4
 
 BuildRequires:  xs-opam-repo
 BuildRequires:  openssl-devel
@@ -25,7 +25,7 @@ BuildRequires:  systemd
 %description
 A store and forward message switch for OCaml.
 
-%global ocaml_dir /usr/lib/opamroot/ocaml-system
+%global ocaml_dir %{_opamroot}/ocaml-system
 %global ocaml_libdir %{ocaml_dir}/lib
 %global ocaml_docdir %{ocaml_dir}/doc
 
@@ -38,6 +38,9 @@ cp %{SOURCE4} stuff.xml
 %build
 ./configure --destdir %{buildroot} --sbindir %{_sbindir}
 make
+
+%check
+make test
 
 %install
 mkdir -p %{buildroot}/%{_sbindir}
@@ -89,7 +92,7 @@ fi
 /bin/systemctl daemon-reload >/dev/null 2>&1 || :
 
 %package        devel
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.19.0&format=tar.gz&prefix=message-switch-1.19.0#/message-switch-1.19.0.tar.gz) = 29313bff58dc02ac4b2531160a4541fc197e6437
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.22.0&format=tar.gz&prefix=message-switch-1.22.0#/message-switch-1.22.0.tar.gz) = b97d6c0f7e78b4e0b30171987d57d1398ac76ac4
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       xs-opam-repo
@@ -120,6 +123,19 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Aug 23 2019 Edwin Török <edvin.torok@citrix.com> - 1.22.0-2
+- bump packages after xs-opam update
+
+* Mon Jul 29 2019 Christian Lindig <christian.lindig@citrix.com> - 1.22.0-1
+- Upgrade from jbuilder to dune in opam rules
+- Update message-switch dependencies according to dune
+
+* Tue Jul 23 2019 Rob Hoes <rob.hoes@citrix.com> - 1.21.0-1
+- CA-323813: do not loop infinitely when there is a communication error with message switch
+
+* Tue Jun 25 2019 Christian Lindig <christian.lindig@citrix.com> - 1.20.0-1
+- CA-322044: Fix file descriptor leak on reconnect
+
 * Mon Feb 04 2019 Christian Lindig <christian.lindig@citrix.com> - 1.19.0-2
 - Remove stale /etc/rc.d/*/*message-switch symlinks
 
