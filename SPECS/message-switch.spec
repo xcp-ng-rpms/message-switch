@@ -1,18 +1,18 @@
 Name:           message-switch
-Version:        1.22.0
-Release:        2%{?dist}
+Version:        1.23.0
+Release:        1%{?dist}
 Summary:        A store and forward message switch
 License:        FreeBSD
 URL:            https://github.com/xapi-project/message-switch
 
-Source0: https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.22.0&format=tar.gz&prefix=message-switch-1.22.0#/message-switch-1.22.0.tar.gz
+Source0: https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.0&format=tar.gz&prefix=message-switch-1.23.0#/message-switch-1.23.0.tar.gz
 Source1: SOURCES/message-switch/message-switch.service
 Source2: SOURCES/message-switch/message-switch-conf
 Source3: SOURCES/message-switch/message-switch-bugtool1.xml
 Source4: SOURCES/message-switch/message-switch-bugtool2.xml
 
 
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.22.0&format=tar.gz&prefix=message-switch-1.22.0#/message-switch-1.22.0.tar.gz) = b97d6c0f7e78b4e0b30171987d57d1398ac76ac4
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.0&format=tar.gz&prefix=message-switch-1.23.0#/message-switch-1.23.0.tar.gz) = 6b44a09aad99efcb3cbf43688f6f8f5aa62761d3
 
 BuildRequires:  xs-opam-repo
 BuildRequires:  openssl-devel
@@ -92,7 +92,7 @@ fi
 /bin/systemctl daemon-reload >/dev/null 2>&1 || :
 
 %package        devel
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.22.0&format=tar.gz&prefix=message-switch-1.22.0#/message-switch-1.22.0.tar.gz) = b97d6c0f7e78b4e0b30171987d57d1398ac76ac4
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.0&format=tar.gz&prefix=message-switch-1.23.0#/message-switch-1.23.0.tar.gz) = 6b44a09aad99efcb3cbf43688f6f8f5aa62761d3
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       xs-opam-repo
@@ -123,6 +123,10 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Mar 27 2020 Christian Lindig <christian.lindig@citrix.com> - 1.23.0-1
+- CP-33380: update opam for dune 2 test compatibility
+- travis: refresh configuration
+
 * Fri Aug 23 2019 Edwin Török <edvin.torok@citrix.com> - 1.22.0-2
 - bump packages after xs-opam update
 
