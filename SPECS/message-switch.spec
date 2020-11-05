@@ -1,6 +1,6 @@
 Name:           message-switch
 Version:        1.23.0
-Release:        1%{?dist}
+Release:        1.1%{?dist}
 Summary:        A store and forward message switch
 License:        FreeBSD
 URL:            https://github.com/xapi-project/message-switch
@@ -123,6 +123,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu Nov 05 2020 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.23.0-1.1
+- Rebuild for xs-opam-src 6.35.1 from XS82E002
+
 * Fri Mar 27 2020 Christian Lindig <christian.lindig@citrix.com> - 1.23.0-1
 - CP-33380: update opam for dune 2 test compatibility
 - travis: refresh configuration
