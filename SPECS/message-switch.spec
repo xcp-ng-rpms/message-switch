@@ -1,18 +1,18 @@
 Name:           message-switch
-Version:        1.23.0
-Release:        1.2%{?dist}
+Version:        1.23.1
+Release:        1.1%{?dist}
 Summary:        A store and forward message switch
 License:        FreeBSD
 URL:            https://github.com/xapi-project/message-switch
 
-Source0: https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.0&format=tar.gz&prefix=message-switch-1.23.0#/message-switch-1.23.0.tar.gz
+Source0: https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.1&format=tar.gz&prefix=message-switch-1.23.1#/message-switch-1.23.1.tar.gz
 Source1: SOURCES/message-switch/message-switch.service
 Source2: SOURCES/message-switch/message-switch-conf
 Source3: SOURCES/message-switch/message-switch-bugtool1.xml
 Source4: SOURCES/message-switch/message-switch-bugtool2.xml
 
 
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.0&format=tar.gz&prefix=message-switch-1.23.0#/message-switch-1.23.0.tar.gz) = 6b44a09aad99efcb3cbf43688f6f8f5aa62761d3
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.1&format=tar.gz&prefix=message-switch-1.23.1#/message-switch-1.23.1.tar.gz) = fb828edfa2cc76225a975bb02087feb38511baa6
 
 BuildRequires:  xs-opam-repo
 BuildRequires:  openssl-devel
@@ -92,7 +92,7 @@ fi
 /bin/systemctl daemon-reload >/dev/null 2>&1 || :
 
 %package        devel
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.0&format=tar.gz&prefix=message-switch-1.23.0#/message-switch-1.23.0.tar.gz) = 6b44a09aad99efcb3cbf43688f6f8f5aa62761d3
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.1&format=tar.gz&prefix=message-switch-1.23.1#/message-switch-1.23.1.tar.gz) = fb828edfa2cc76225a975bb02087feb38511baa6
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       xs-opam-repo
@@ -123,8 +123,18 @@ developing applications that use %{name}.
 
 
 %changelog
+* Wed Sep 01 2021 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.23.1-1.1
+- Sync with hotfix XS82E031
+- *** Upstream changelog ***
+- * Fri Jul 16 2021 Ben Anson <ben.anson@citrix.com> - 1.23.1-1
+- - maintenance: prepare for ocamlformat
+- - make format
+- - CA-351685: Make default Traceext.size configurable
+- - CA-351685: Reduce number of trace entries to 16 to reduce memory usage
+- - CA-351685: truncate large messages in trace buffer
+
 * Tue May 18 2021 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.23.0-1.2
-- Rebuild for xs-opam-src 6.35.6 from XS82E20
+- Rebuild for xs-opam-src 6.35.6 from XS82E020
 
 * Thu Nov 05 2020 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.23.0-1.1
 - Rebuild for xs-opam-src 6.35.1 from XS82E002
