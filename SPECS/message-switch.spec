@@ -1,23 +1,25 @@
 Name:           message-switch
-Version:        1.23.1
-Release:        1%{?dist}
+Version:        1.23.2
+Release:        3%{?dist}
 Summary:        A store and forward message switch
 License:        FreeBSD
 URL:            https://github.com/xapi-project/message-switch
 
-Source0: https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.1&format=tar.gz&prefix=message-switch-1.23.1#/message-switch-1.23.1.tar.gz
+Source0: https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.2&format=tar.gz&prefix=message-switch-1.23.2#/message-switch-1.23.2.tar.gz
 Source1: SOURCES/message-switch/message-switch.service
 Source2: SOURCES/message-switch/message-switch-conf
 Source3: SOURCES/message-switch/message-switch-bugtool1.xml
 Source4: SOURCES/message-switch/message-switch-bugtool2.xml
 
 
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.1&format=tar.gz&prefix=message-switch-1.23.1#/message-switch-1.23.1.tar.gz) = fb828edfa2cc76225a975bb02087feb38511baa6
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.2&format=tar.gz&prefix=message-switch-1.23.2#/message-switch-1.23.2.tar.gz) = 6208c9793e9f9c86cdd00060b0e5ca022c669ddd
 
 BuildRequires:  xs-opam-repo
 BuildRequires:  openssl-devel
 BuildRequires:  systemd
 %{?systemd_requires}
+
+Requires:       libev
 
 %global _use_internal_dependency_generator 0
 %global __requires_exclude *caml*
@@ -92,7 +94,7 @@ fi
 /bin/systemctl daemon-reload >/dev/null 2>&1 || :
 
 %package        devel
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.1&format=tar.gz&prefix=message-switch-1.23.1#/message-switch-1.23.1.tar.gz) = fb828edfa2cc76225a975bb02087feb38511baa6
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.2&format=tar.gz&prefix=message-switch-1.23.2#/message-switch-1.23.2.tar.gz) = 6208c9793e9f9c86cdd00060b0e5ca022c669ddd
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       xs-opam-repo
@@ -123,12 +125,27 @@ developing applications that use %{name}.
 
 
 %changelog
+* Mon Sep 27 2021 Pau Ruiz Safont <pau.safont@citrix.com> - 1.23.2-3
+- Bump package for libev dependency
+
+* Mon Sep 27 2021 Pau Ruiz Safont <pau.safont@citrix.com> - 1.23.2-2
+- Bump package after xs-opam update
+
+* Mon Aug 23 2021 Pau Ruiz Safont <pau.safont@citrix.com> - 1.23.2-1
+- maintenance: opam 2.1.0 compatibility
+- CP-38064: update code for jst 0.13.0 compatibility
+- maintenance: remove unused types
+- CA-38064: truncate large messages in trace buffer
+
 * Fri Jul 16 2021 Ben Anson <ben.anson@citrix.com> - 1.23.1-1
 - maintenance: prepare for ocamlformat
 - make format
 - CA-351685: Make default Traceext.size configurable
 - CA-351685: Reduce number of trace entries to 16 to reduce memory usage
 - CA-351685: truncate large messages in trace buffer
+
+* Tue Jul 13 2021 Edwin Török <edvin.torok@citrix.com> - 1.23.0-2
+- bump packages after xs-opam update
 
 * Fri Mar 27 2020 Christian Lindig <christian.lindig@citrix.com> - 1.23.0-1
 - CP-33380: update opam for dune 2 test compatibility
