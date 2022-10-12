@@ -1,6 +1,6 @@
 Name:           message-switch
 Version:        1.23.2
-Release:        3.1%{?dist}
+Release:        3.2%{?dist}
 Summary:        A store and forward message switch
 License:        FreeBSD
 URL:            https://github.com/xapi-project/message-switch
@@ -125,6 +125,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Wed Oct 12 2022 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.23.2-3.2
+- Rebuild for security update synced from XS82ECU1019
+
 * Mon Dec 20 2021 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.23.2-3.1
 - Sync with CH 8.2.1
 - *** Upstream changelog ***
