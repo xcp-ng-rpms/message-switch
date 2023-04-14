@@ -1,28 +1,22 @@
+%global package_speccommit 243282f37982580c7581d3e0dc23162dd54bd0aa
+%global package_srccommit v1.23.2
 Name:           message-switch
-Version:        1.23.2
-Release:        3%{?dist}
+Version: 1.23.2
+Release: 4%{?xsrel}%{?dist}
 Summary:        A store and forward message switch
-License:        FreeBSD
+License:        ISC
 URL:            https://github.com/xapi-project/message-switch
-
-Source0: https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.2&format=tar.gz&prefix=message-switch-1.23.2#/message-switch-1.23.2.tar.gz
-Source1: SOURCES/message-switch/message-switch.service
-Source2: SOURCES/message-switch/message-switch-conf
-Source3: SOURCES/message-switch/message-switch-bugtool1.xml
-Source4: SOURCES/message-switch/message-switch-bugtool2.xml
-
-
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.2&format=tar.gz&prefix=message-switch-1.23.2#/message-switch-1.23.2.tar.gz) = 6208c9793e9f9c86cdd00060b0e5ca022c669ddd
-
+Source0: message-switch-1.23.2.tar.gz
+Source1: message-switch.service
+Source2: message-switch-conf
+Source3: message-switch-bugtool1.xml
+Source4: message-switch-bugtool2.xml
 BuildRequires:  xs-opam-repo
 BuildRequires:  openssl-devel
 BuildRequires:  systemd
 %{?systemd_requires}
 
 Requires:       libev
-
-%global _use_internal_dependency_generator 0
-%global __requires_exclude *caml*
 
 %description
 A store and forward message switch for OCaml.
@@ -85,7 +79,7 @@ fi
 %systemd_preun message-switch.service
 
 %postun
-%systemd_postun
+%systemd_postun message-switch.service
 
 # this would be done by %postun of old package, except old package wasn't
 # using systemd, without this a systemctl restart message-switch would fail
@@ -94,7 +88,6 @@ fi
 /bin/systemctl daemon-reload >/dev/null 2>&1 || :
 
 %package        devel
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XSU/repos/message-switch/archive?at=v1.23.2&format=tar.gz&prefix=message-switch-1.23.2#/message-switch-1.23.2.tar.gz) = 6208c9793e9f9c86cdd00060b0e5ca022c669ddd
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       xs-opam-repo
@@ -125,6 +118,10 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu Feb 23 2023 Pau Ruiz Safont <pau.ruizsafont@cloud.com> - 1.23.2-4
+- Change license to match the one in the source repo
+- Remove macro for dependency generator
+
 * Mon Sep 27 2021 Pau Ruiz Safont <pau.safont@citrix.com> - 1.23.2-3
 - Bump package for libev dependency
 
