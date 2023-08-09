@@ -1,8 +1,8 @@
-%global package_speccommit 243282f37982580c7581d3e0dc23162dd54bd0aa
+%global package_speccommit 8d0cc764eb1e813ed14f0fe5ec7d0ecce2767bed
 %global package_srccommit v1.23.2
 Name:           message-switch
 Version: 1.23.2
-Release: 4.1%{?xsrel}%{?dist}
+Release: 9.1%{?xsrel}%{?dist}
 Summary:        A store and forward message switch
 License:        ISC
 URL:            https://github.com/xapi-project/message-switch
@@ -118,6 +118,20 @@ developing applications that use %{name}.
 
 
 %changelog
+* Wed Aug 09 2023 Gael Duperrey <gduperrey@vates.fr> - 1.23.2-9.1
+- Sync with hotfix XS82ECU1040
+- *** Upstream changelog ***
+- * Thu Jul 20 2023 Rob Hoes <rob.hoes@citrix.com> - 1.23.2-9
+- - Bump release and rebuild
+- * Mon Jun 19 2023 Christian Lindig <christian.lindig@citrix.com> - 1.23.2-8
+- - Bump release and rebuild
+- * Thu Jun 08 2023 Christian Lindig <christian.lindig@citrix.com> - 1.23.2-7
+- - Bump release and rebuild
+- * Fri May 12 2023 Christian Lindig <christian.lindig@citrix.com> - 1.23.2-6
+- - Bump release and rebuild
+- * Fri May 12 2023 Christian Lindig <christian.lindig@citrix.com> - 1.23.2-5
+- - Bump release and rebuild
+
 * Fri Apr 14 2023 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.23.2-4.1
 - Sync with hotfix XS82ECU1027
 - *** Upstream changelog ***
