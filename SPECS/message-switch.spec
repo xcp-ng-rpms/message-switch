@@ -1,8 +1,8 @@
-%global package_speccommit 51dec12909d838da7cd2c8bbe58639ef26326cd9
+%global package_speccommit dfad8b2b7d631f7fa075e8fc49bf60d8d37d4486
 %global package_srccommit v1.23.2
 Name:           message-switch
 Version: 1.23.2
-Release: 10%{?xsrel}%{?dist}
+Release: 17%{?xsrel}%{?dist}
 Summary:        A store and forward message switch
 License:        ISC
 URL:            https://github.com/xapi-project/message-switch
@@ -118,6 +118,27 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Mar 08 2024 Christian Lindig <christian.lindig@cloud.com> - 1.23.2-17
+- Bump release and rebuild
+
+* Wed Mar 06 2024 Christian Lindig <christian.lindig@cloud.com> - 1.23.2-16
+- Bump release and rebuild
+
+* Tue Mar 05 2024 Christian Lindig <christian.lindig@cloud.com> - 1.23.2-15
+- Bump release and rebuild
+
+* Fri Nov 03 2023 Christian Lindig <christian.lindig@cloud.com> - 1.23.2-14
+- Bump release and rebuild
+
+* Tue Oct 24 2023 Christian Lindig <christian.lindig@cloud.com> - 1.23.2-13
+- Bump release and rebuild
+
+* Tue Oct 24 2023 Christian Lindig <christian.lindig@cloud.com> - 1.23.2-12
+- Bump release and rebuild
+
+* Wed Oct 18 2023 Christian Lindig <christian.lindig@cloud.com> - 1.23.2-11
+- Bump release and rebuild
+
 * Mon Oct 02 2023 Pau Ruiz Safont <pau.ruizsafont@cloud.com> - 1.23.2-10
 - Bump release and rebuild
 
