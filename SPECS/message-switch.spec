@@ -1,8 +1,8 @@
-%global package_speccommit f72096a7716a3b4a71408128db1c5e238a8f8899
+%global package_speccommit ec61880f744a16f21584d85bad1e5bdc12a7ab15
 %global package_srccommit v1.23.2
 Name:           message-switch
 Version: 1.23.2
-Release: 19.1%{?xsrel}%{?dist}
+Release: 22.1%{?xsrel}%{?dist}
 Summary:        A store and forward message switch
 License:        ISC
 URL:            https://github.com/xapi-project/message-switch
@@ -118,6 +118,16 @@ developing applications that use %{name}.
 
 
 %changelog
+* Wed Jan 15 2025 Gael Duperrey <gduperrey@vates.tech> - 1.23.2-22.1
+- Sync with hotfix XS82ECU1080
+- *** Upstream changelog ***
+- * Fri Dec 13 2024 Christian Lindig <christian.lindig@cloud.com> - 1.23.2-22
+- - Bump release and rebuild
+- * Thu Dec 12 2024 Christian Lindig <christian.lindig@cloud.com> - 1.23.2-21
+- - Bump release and rebuild
+- * Mon Dec 09 2024 Christian Lindig <christian.lindig@cloud.com> - 1.23.2-20
+- - Bump release and rebuild
+
 * Thu Oct 24 2024 Gael Duperrey <gduperrey@vates.tech> - 1.23.2-19.1
 - Sync with hotfix XS82ECU1074
 - *** Upstream changelog ***
